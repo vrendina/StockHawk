@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Stock Hawk</string>
+    <string name="app_name">Stock Hawk AR</string>
     <string name="dialog_add">إضافة</string>
     <string name="dialog_title">إضافة سهم</string>
     <string name="dialog_hint">رمز (مثال GOOG)</string>
