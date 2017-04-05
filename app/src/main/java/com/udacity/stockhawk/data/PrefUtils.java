@@ -26,6 +26,7 @@ public final class PrefUtils {
 
         boolean initialized = prefs.getBoolean(initializedKey, false);
 
+        // If the data has not been previously initialized add a set of default stocks
         if (!initialized) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean(initializedKey, true);

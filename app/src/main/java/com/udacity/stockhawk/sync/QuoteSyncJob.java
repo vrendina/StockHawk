@@ -50,6 +50,7 @@ public final class QuoteSyncJob {
 
         try {
 
+            // If this is the first launch the set of default stocks will be returned
             Set<String> stockPref = PrefUtils.getStocks(context);
             Set<String> stockCopy = new HashSet<>();
             stockCopy.addAll(stockPref);
@@ -105,11 +106,13 @@ public final class QuoteSyncJob {
 
             }
 
+            // Use the content provider to insert all the stock data
             context.getContentResolver()
                     .bulkInsert(
                             Contract.Quote.URI,
                             quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
 
+            // Notify any listeners that the data has been updated
             Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
             context.sendBroadcast(dataUpdatedIntent);
 
@@ -124,6 +127,7 @@ public final class QuoteSyncJob {
 
         JobInfo.Builder builder = new JobInfo.Builder(PERIODIC_ID, new ComponentName(context, QuoteJobService.class));
 
+        // Schedule the stock update every 300,000 milliseconds (5 minutes)
 
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setPeriodic(PERIOD)
@@ -136,10 +140,16 @@ public final class QuoteSyncJob {
     }
 
 
+    /**
+     * This method is called by the MainActivity to start synchronizing data and schedule a periodic
+     * update of data.
+     */
     public static synchronized void initialize(final Context context) {
 
         schedulePeriodic(context);
-        syncImmediately(context);
+
+        // This was causing a duplicate sync when the app started up
+        //syncImmediately(context);
 
     }
 
@@ -152,6 +162,8 @@ public final class QuoteSyncJob {
             Intent nowIntent = new Intent(context, QuoteIntentService.class);
             context.startService(nowIntent);
         } else {
+
+            // If the network connectivity is down schedule a single synchronization job to run in the future
 
             JobInfo.Builder builder = new JobInfo.Builder(ONE_OFF_ID, new ComponentName(context, QuoteJobService.class));
 
