@@ -72,13 +72,23 @@ public final class QuoteSyncJob {
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
 
-
                 Stock stock = quotes.get(symbol);
                 StockQuote quote = stock.getQuote();
+
+                String name = stock.getName();
+
+                // TODO: Add some sort of user feedback (Toast) when an invalid stock symbol is added
+                if(name == null) {
+                    Timber.w("Stock symbol not found.");
+                    // Remove the stock from the preference list
+                    PrefUtils.removeStock(context, symbol);
+                    continue;
+                }
 
                 float price = quote.getPrice().floatValue();
                 float change = quote.getChange().floatValue();
                 float percentChange = quote.getChangeInPercent().floatValue();
+
 
                 // WARNING! Don't request historical data for a stock that doesn't exist!
                 // The request will hang forever X_x
