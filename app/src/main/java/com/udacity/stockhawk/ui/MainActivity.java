@@ -1,6 +1,7 @@
 package com.udacity.stockhawk.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onClick(String symbol) {
         Timber.d("Symbol clicked: %s", symbol);
+
+        Intent intent = new Intent(this, StockDetail.class);
+        intent.putExtra(Intent.EXTRA_TEXT, symbol);
+
+        startActivity(intent);
     }
 
     @Override
@@ -174,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getMenuInflater().inflate(R.menu.main_activity_settings, menu);
         MenuItem item = menu.findItem(R.id.action_change_units);
         setDisplayModeMenuItemIcon(item);
+        
+
         return true;
     }
 
