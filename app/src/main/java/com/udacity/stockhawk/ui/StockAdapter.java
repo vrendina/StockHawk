@@ -12,11 +12,8 @@ import android.widget.TextView;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
+import com.udacity.stockhawk.data.FormatUtils;
 import com.udacity.stockhawk.data.PrefUtils;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,24 +22,12 @@ import timber.log.Timber;
 class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
     private final Context context;
-    private final DecimalFormat dollarFormatWithPlus;
-    private final DecimalFormat dollarFormat;
-    private final DecimalFormat percentageFormat;
     private Cursor cursor;
     private final StockAdapterOnClickHandler clickHandler;
 
     StockAdapter(Context context, StockAdapterOnClickHandler clickHandler) {
         this.context = context;
         this.clickHandler = clickHandler;
-
-        dollarFormat = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
-        dollarFormatWithPlus = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
-        dollarFormatWithPlus.setPositivePrefix("+$");
-        dollarFormatWithPlus.setNegativePrefix("−$");
-        percentageFormat = (DecimalFormat) NumberFormat.getPercentInstance(Locale.getDefault());
-        percentageFormat.setMaximumFractionDigits(2);
-        percentageFormat.setMinimumFractionDigits(2);
-        percentageFormat.setPositivePrefix("+");
     }
 
     void setCursor(Cursor cursor) {
@@ -76,7 +61,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         float percentageChange = cursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
 
         holder.symbol.setText(symbol);
-        holder.price.setText(dollarFormat.format(price));
+        holder.price.setText(FormatUtils.getDollarFormatUnsigned().format(price));
 
         String a11yChangeDirection;
 
@@ -88,8 +73,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             a11yChangeDirection = context.getString(R.string.a11y_negative_change);
         }
 
-        String change = dollarFormatWithPlus.format(rawAbsoluteChange);
-        String percentage = percentageFormat.format(percentageChange / 100);
+        String change = FormatUtils.getDollarFormatSigned().format(rawAbsoluteChange);
+        String percentage = FormatUtils.getPercentageFormatSigned().format(percentageChange / 100);
 
         if (PrefUtils.getDisplayMode(context).equals(context.getString(R.string.pref_display_mode_absolute_key))) {
             holder.change.setText(change);
