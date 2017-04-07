@@ -9,6 +9,9 @@
     <string name="toast_no_connectivity">سيتم تحديث عندما الشبكة المتاحة.</string>
     <string name="toast_stock_added_no_connectivity">تمت إضافة الرمز s%. سيتم تحديث عندما الشبكة المتاحة.</string>
     <string name="dialog_cancel">إلغاء</string>
-    <string name="a11y_btn_add_stock">\@string/dialog_title</string>
+    <string name="a11y_btn_add_stock">إضافة سهم</string>
     <string name="a11y_btn_toggle_display_mode">تبديل وضع العرض</string>
+    <string name="a11y_positive_change">فوق</string>
+    <string name="a11y_negative_change">أسفل</string>
+    <string name="a11y_list_item">%1$s current price %2$s %3$s %4$s</string>
 </resources>

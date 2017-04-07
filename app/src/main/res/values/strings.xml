@@ -31,4 +31,10 @@
 
     <string name="a11y_btn_add_stock">@string/dialog_title</string>
     <string name="a11y_btn_toggle_display_mode">Toggle Display Mode</string>
+
+    <!-- [name] current price [price] [up/down] [$/%] -->
+    <string name="a11y_list_item">%1$s current price %2$s %3$s %4$s</string>
+
+    <string name="a11y_positive_change">up</string>
+    <string name="a11y_negative_change">down</string>
 </resources>
