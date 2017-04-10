@@ -17,6 +17,8 @@ The purpose of this project is to incorporate changes from mock user feedback in
 
 > "Stock Hawk allows me to track the current price of stocks, but to track their prices over time, I need to use an external program. It would be wonderful if you could show more detail on a stock, including its price over time."
 
++ `StockDetail` activity created to display historical data using [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) library.
+
 > "I use a lot of widgets on my Android device, and I would love to have a widget that displays my stock quotes on my home screen."
 
 > "I found a bug in your app. Right now when I search for a stock quote that doesn't exist, the app crashes."
