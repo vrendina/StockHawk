@@ -61,7 +61,7 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         float percentageChange = cursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
 
         holder.symbol.setText(symbol);
-        holder.price.setText(FormatUtils.getDollarFormatUnsigned().format(price));
+        holder.price.setText(FormatUtils.getFormatUtils().getDollarFormatUnsigned().format(price));
 
         String a11yChangeDirection;
 
@@ -73,8 +73,8 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
             a11yChangeDirection = context.getString(R.string.a11y_negative_change);
         }
 
-        String change = FormatUtils.getDollarFormatSigned().format(rawAbsoluteChange);
-        String percentage = FormatUtils.getPercentageFormatSigned().format(percentageChange / 100);
+        String change = FormatUtils.getFormatUtils().getDollarFormatSigned().format(rawAbsoluteChange);
+        String percentage = FormatUtils.getFormatUtils().getPercentageFormatSigned().format(percentageChange / 100);
 
         if (PrefUtils.getDisplayMode(context).equals(context.getString(R.string.pref_display_mode_absolute_key))) {
             holder.change.setText(change);

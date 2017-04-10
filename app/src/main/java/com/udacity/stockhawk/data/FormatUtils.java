@@ -6,19 +6,36 @@ import java.util.Locale;
 
 public class FormatUtils {
 
-    private static DecimalFormat dollarFormatUnsigned;
-    private static DecimalFormat dollarFormatSigned;
+    private DecimalFormat dollarFormatUnsigned;
+    private DecimalFormat dollarFormatUnsignedNoDecimals;
+    private DecimalFormat dollarFormatSigned;
+    private DecimalFormat percentageFormatSigned;
 
-    private static DecimalFormat percentageFormatSigned;
+    private static FormatUtils formatInstance;
 
-    public static DecimalFormat getDollarFormatUnsigned() {
+    public static FormatUtils getFormatUtils() {
+        if(formatInstance == null) {
+            formatInstance = new FormatUtils();
+        }
+        return formatInstance;
+    }
+
+    public DecimalFormat getDollarFormatUnsigned() {
         if(dollarFormatUnsigned == null) {
             dollarFormatUnsigned = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
         }
         return dollarFormatUnsigned;
     }
 
-    public static DecimalFormat getDollarFormatSigned() {
+    public DecimalFormat getDollarFormatUnsignedNoDecimals() {
+        if(dollarFormatUnsignedNoDecimals == null) {
+            dollarFormatUnsignedNoDecimals = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
+            dollarFormatUnsignedNoDecimals.setMinimumFractionDigits(0);
+        }
+        return dollarFormatUnsignedNoDecimals;
+    }
+
+    public DecimalFormat getDollarFormatSigned() {
         if(dollarFormatSigned == null) {
             dollarFormatSigned = (DecimalFormat) NumberFormat.getCurrencyInstance(Locale.US);
             dollarFormatSigned.setNegativePrefix("−$");
@@ -27,7 +44,7 @@ public class FormatUtils {
         return dollarFormatSigned;
     }
 
-    public static DecimalFormat getPercentageFormatSigned() {
+    public DecimalFormat getPercentageFormatSigned() {
         if(percentageFormatSigned == null) {
             percentageFormatSigned = (DecimalFormat) NumberFormat.getPercentInstance(Locale.getDefault());
             percentageFormatSigned.setMaximumFractionDigits(2);
