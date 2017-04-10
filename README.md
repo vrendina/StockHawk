@@ -21,9 +21,17 @@ The purpose of this project is to incorporate changes from mock user feedback in
 
 > "I use a lot of widgets on my Android device, and I would love to have a widget that displays my stock quotes on my home screen."
 
++ TODO
+
 > "I found a bug in your app. Right now when I search for a stock quote that doesn't exist, the app crashes."
 
 + Crash occurred when calling `quote.getPrice().floatValue()`. The object returned from `getPrice()` was null and `floatValue()` was called on a null reference. 
 + Logic was added to the `QuoteSyncJob` class to check if the stock is null before attempting to extract the pricing information. 
 
 > "When I opened this app for the first time without a network connection, it was a confusing blank screen. I would love a message that tells me why the screen is blank or whether my stock quotes are out of date."
+
++ TODO
+
+### Screenshots
+
+![List](screenshots/list.png?raw=true) ![Add](screenshots/add.png?raw=true) ![Chart](screenshots/chart.png?raw=true)
