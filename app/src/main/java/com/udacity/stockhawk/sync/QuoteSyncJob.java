@@ -126,6 +126,9 @@ public final class QuoteSyncJob {
             Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
             context.sendBroadcast(dataUpdatedIntent);
 
+            // Update the last updated field
+            PrefUtils.updateLastUpdate(context);
+
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");
         }

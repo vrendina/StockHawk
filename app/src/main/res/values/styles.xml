@@ -28,4 +28,7 @@
     <style name="PriceDetailTextStyle">
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="LastUpdateTextStyle" parent="PriceDetailTextStyle" />
+
 </resources>

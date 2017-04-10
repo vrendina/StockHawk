@@ -12,10 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_lastupdate"
+                android:background="@drawable/scrim"
+                tools:text="Last Update: 4/10/2017 3:57 PM"
+                style="@style/LastUpdateTextStyle"
+                android:text="@string/last_updated"
+                android:gravity="center|bottom"
+                android:layout_gravity="bottom"/>
+        </FrameLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

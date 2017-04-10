@@ -11,6 +11,8 @@
     <string name="pref_display_mode_absolute_key" translatable="false">absolute</string>
     <string name="pref_display_mode_percentage_key" translatable="false">percentage</string>
 
+    <string name="pref_last_update_key" translatable="false">lastupdate</string>
+
     <string name="default_stocks_yahoo" translatable="false">YHOO</string>
     <string name="default_stocks_apple" translatable="false">AAPL</string>
     <string name="default_stocks_microsoft" translatable="false">MSFT</string>
@@ -31,6 +33,10 @@
 
     <!-- Close [price] [date] -->
     <string name="stock_detail_close">Close %1$s %2$s</string>
+
+    <!-- Last updated: [date] -->
+    <string name="last_updated">Last updated: %1$s</string>
+    <string name="never_updated">Never</string>
 
     <string name="a11y_btn_add_stock">@string/dialog_title</string>
     <string name="a11y_btn_toggle_display_mode">Toggle Display Mode</string>
