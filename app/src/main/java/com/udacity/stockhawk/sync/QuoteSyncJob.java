@@ -96,11 +96,12 @@ public final class QuoteSyncJob {
 
                 StringBuilder historyBuilder = new StringBuilder();
 
+                // Modified to put data in chronological order (oldest->newest)
                 for (HistoricalQuote it : history) {
-                    historyBuilder.append(it.getDate().getTimeInMillis());
-                    historyBuilder.append(",");
-                    historyBuilder.append(it.getClose());
-                    historyBuilder.append("\n");
+                    historyBuilder.insert(0, "\n");
+                    historyBuilder.insert(0, it.getClose());
+                    historyBuilder.insert(0, ",");
+                    historyBuilder.insert(0, it.getDate().getTimeInMillis());
                 }
 
                 ContentValues quoteCV = new ContentValues();
