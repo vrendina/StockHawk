@@ -29,6 +29,9 @@
     <string name="toast_stock_added_no_connectivity">Symbol %1$s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
+    <!-- Close [price] [date] -->
+    <string name="stock_detail_close">Close %1$s %2$s</string>
+
     <string name="a11y_btn_add_stock">@string/dialog_title</string>
     <string name="a11y_btn_toggle_display_mode">Toggle Display Mode</string>
 
@@ -37,4 +40,6 @@
 
     <string name="a11y_positive_change">up</string>
     <string name="a11y_negative_change">down</string>
+
+    <string name="a11y_chart">Stock Chart</string>
 </resources>
