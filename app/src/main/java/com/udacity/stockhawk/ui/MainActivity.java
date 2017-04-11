@@ -153,14 +153,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        swipeRefreshLayout.setRefreshing(false);
-
         // Set the last updated text
         String lastUpdate = getString(R.string.last_updated, PrefUtils.getLastUpdate(this));
         lastUpdateTextView.setText(lastUpdate);
 
         if (data.getCount() != 0) {
             error.setVisibility(View.GONE);
+            swipeRefreshLayout.setRefreshing(false);
         }
         adapter.setCursor(data);
     }
