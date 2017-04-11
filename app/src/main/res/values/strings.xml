@@ -36,7 +36,7 @@
 
     <!-- Last updated: [date] -->
     <string name="last_updated">Last updated: %1$s</string>
-    <string name="never_updated">Never</string>
+    <string name="never_updated">never</string>
 
     <string name="a11y_btn_add_stock">@string/dialog_title</string>
     <string name="a11y_btn_toggle_display_mode">Toggle Display Mode</string>
