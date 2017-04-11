@@ -194,7 +194,10 @@ public class StockDetail extends AppCompatActivity
         String price = FormatUtils.getFormatUtils().getDollarFormatUnsigned().format(e.getY());
         String date = history.get(e.getY());
 
-        closeTextView.setText(getString(R.string.stock_detail_close, price, date));
+        String close = getString(R.string.stock_detail_close, price, date);
+
+        closeTextView.setText(close);
+        closeTextView.announceForAccessibility(close);
     }
 
     @Override
