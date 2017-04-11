@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             if(networkUp() && adapter.getItemCount() == 0) {
                 swipeRefreshLayout.setRefreshing(true);
+                checkErrors();
             }
-            onRefresh();
         }
     };
 
