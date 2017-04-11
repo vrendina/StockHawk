@@ -62,6 +62,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     };
 
+    private BroadcastReceiver networkReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Timber.d("Network state has changed.");
+            Timber.d(intent.getStringExtra(ConnectivityManager.EXTRA_REASON));
+
+            if(networkUp() && adapter.getItemCount() == 0) {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+            onRefresh();
+        }
+    };
+
     @Override
     public void onClick(String symbol) {
         Timber.d("Symbol clicked: %s", symbol);
@@ -104,12 +117,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // It looks like stock data is being maintained in the SharedPreferences and ContentProvider
                 PrefUtils.removeStock(MainActivity.this, symbol);
                 getContentResolver().delete(Contract.Quote.makeUriForStock(symbol), null, null);
+
+                if(PrefUtils.getStocks(MainActivity.this).size() == 0) {
+                    error.setText(getString(R.string.error_no_stocks));
+                    error.setVisibility(View.VISIBLE);
+                }
             }
         }).attachToRecyclerView(stockRecyclerView);
 
         // Register broadcast receivers
         IntentFilter filter = new IntentFilter(getString(R.string.action_invalid_stock));
         LocalBroadcastManager.getInstance(this).registerReceiver(stockReceiver, filter);
+        registerReceiver(networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     @Override
@@ -118,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Unregister broadcast receivers
         LocalBroadcastManager.getInstance(this).unregisterReceiver(stockReceiver);
+        unregisterReceiver(networkReceiver);
     }
 
     private boolean networkUp() {
@@ -129,9 +149,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onRefresh() {
-
         QuoteSyncJob.syncImmediately(this);
+        checkErrors();
+    }
 
+    private void checkErrors() {
         if (!networkUp() && adapter.getItemCount() == 0) {
             swipeRefreshLayout.setRefreshing(false);
             error.setText(getString(R.string.error_no_network));
