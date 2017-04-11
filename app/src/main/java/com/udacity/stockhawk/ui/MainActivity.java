@@ -1,7 +1,9 @@
 package com.udacity.stockhawk.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +50,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView lastUpdateTextView;
 
     private StockAdapter adapter;
+
+    private BroadcastReceiver stockReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String symbol = intent.getStringExtra(Intent.EXTRA_TEXT);
+            Timber.d("Received broadcast message, stock symbol " + symbol + " not found.");
+
+            String message = context.getString(R.string.toast_invalid_ticker, symbol);
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        }
+    };
 
     @Override
     public void onClick(String symbol) {
@@ -93,7 +107,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         }).attachToRecyclerView(stockRecyclerView);
 
+        // Register broadcast receivers
+        IntentFilter filter = new IntentFilter(getString(R.string.action_invalid_stock));
+        LocalBroadcastManager.getInstance(this).registerReceiver(stockReceiver, filter);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Unregister broadcast receivers
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(stockReceiver);
     }
 
     private boolean networkUp() {

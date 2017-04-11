@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.content.LocalBroadcastManager;
 
+import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 
@@ -31,7 +33,7 @@ import yahoofinance.quotes.stock.StockQuote;
 public final class QuoteSyncJob {
 
     private static final int ONE_OFF_ID = 2;
-    private static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
+//    private static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
     private static final int PERIOD = 300000;
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
@@ -77,9 +79,15 @@ public final class QuoteSyncJob {
 
                 String name = stock.getName();
 
-                // TODO: Add some sort of user feedback (Toast) when an invalid stock symbol is added
                 if(name == null) {
-                    Timber.w("Stock symbol not found.");
+                    Timber.d("Stock symbol '" + symbol + "' not found.");
+
+                    // Send a local broadcast that the stock was not valid
+                    Intent intent = new Intent();
+                    intent.setAction(context.getString(R.string.action_invalid_stock));
+                    intent.putExtra(Intent.EXTRA_TEXT, symbol);
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
                     // Remove the stock from the preference list
                     PrefUtils.removeStock(context, symbol);
                     continue;
@@ -123,8 +131,8 @@ public final class QuoteSyncJob {
                             quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
 
             // Notify any listeners that the data has been updated
-            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
-            context.sendBroadcast(dataUpdatedIntent);
+//            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
+//            context.sendBroadcast(dataUpdatedIntent);
 
             // Update the last updated field
             PrefUtils.updateLastUpdate(context);

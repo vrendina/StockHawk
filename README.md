@@ -26,11 +26,14 @@ The purpose of this project is to incorporate changes from mock user feedback in
 > "I found a bug in your app. Right now when I search for a stock quote that doesn't exist, the app crashes."
 
 + Crash occurred when calling `quote.getPrice().floatValue()`. The object returned from `getPrice()` was null and `floatValue()` was called on a null reference. 
-+ Logic was added to the `QuoteSyncJob` class to check if the stock is null before attempting to extract the pricing information. 
++ Logic was added to the `QuoteSyncJob` class to check if the stock is null before attempting to extract the pricing information.
++ Local broadcast was added to notify the user if an invalid stock symbol was added.
++ Restrictions were placed on what kind of data/characters can be entered into the `EditText` that comes up in the `DialogFragment`
 
 > "When I opened this app for the first time without a network connection, it was a confusing blank screen. I would love a message that tells me why the screen is blank or whether my stock quotes are out of date."
 
-+ TODO
++ An error message is displayed when the application is first launched if there is no connectivity.
++ A `TextView` was added to the bottom of the stock list to show the last time the stock data was refreshed.
 
 ### Screenshots
 

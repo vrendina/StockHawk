@@ -18,6 +18,7 @@
     <string name="default_stocks_microsoft" translatable="false">MSFT</string>
     <string name="default_stocks_facebook" translatable="false">FB</string>
 
+    <string name="action_invalid_stock" translatable="false">com.udacity.stockhawk.INVALID_STOCK</string>
     <string name="action_change_units" translatable="false">@string/pref_display_mode_key</string>
 
     <string name="dialog_title">Add Stock</string>
@@ -30,6 +31,7 @@
 
     <string name="toast_stock_added_no_connectivity">Symbol %1$s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
+    <string name="toast_invalid_ticker">Unknown stock symbol \'%1$s\'</string>
 
     <!-- Close [price] [date] -->
     <string name="stock_detail_close">Close %1$s %2$s</string>
