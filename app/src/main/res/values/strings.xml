@@ -33,6 +33,10 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
     <string name="toast_invalid_ticker">Unknown stock symbol \'%1$s\'</string>
 
+    <string name="widget_stock_name">Stock Detail</string>
+    <string name="widget_stock_list_name">Stock List</string>
+    <string name="widget_stock_list_empty">No stocks added!</string>
+
     <!-- Close [price] [date] -->
     <string name="stock_detail_close">Close %1$s %2$s</string>
 

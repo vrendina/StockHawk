@@ -32,8 +32,9 @@ import yahoofinance.quotes.stock.StockQuote;
 
 public final class QuoteSyncJob {
 
+    public static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
+
     private static final int ONE_OFF_ID = 2;
-    private static final String ACTION_DATA_UPDATED = "com.udacity.stockhawk.ACTION_DATA_UPDATED";
     private static final int PERIOD = 300000;
     private static final int INITIAL_BACKOFF = 10000;
     private static final int PERIODIC_ID = 1;
@@ -130,12 +131,12 @@ public final class QuoteSyncJob {
                             Contract.Quote.URI,
                             quoteCVs.toArray(new ContentValues[quoteCVs.size()]));
 
-            // Notify the widget that we have updated data
-            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
-            context.sendBroadcast(dataUpdatedIntent);
-
             // Update the last updated field
             PrefUtils.updateLastUpdate(context);
+
+            // Notify the com.udacity.stockhawk.widget that we have updated data
+            Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED);
+            context.sendBroadcast(dataUpdatedIntent);
 
         } catch (IOException exception) {
             Timber.e(exception, "Error fetching stock quotes");

@@ -170,11 +170,11 @@ public class StockDetail extends AppCompatActivity
 
         LineDataSet dataSet = new LineDataSet(entries, "");
         dataSet.setHighLightColor(Color.GRAY);
-        dataSet.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        dataSet.setCircleColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        dataSet.setColor(ContextCompat.getColor(this, R.color.primary_dark));
+        dataSet.setCircleColor(ContextCompat.getColor(this, R.color.primary));
         dataSet.setCircleRadius(getResources().getInteger(R.integer.chart_circle_size));
         dataSet.setDrawCircleHole(false);
-        dataSet.setFillColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        dataSet.setFillColor(ContextCompat.getColor(this, R.color.primary));
 
         LineData lineData = new LineData(dataSet);
 

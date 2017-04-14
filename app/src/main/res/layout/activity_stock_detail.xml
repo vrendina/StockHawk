@@ -40,7 +40,7 @@
             android:background="@drawable/percent_change_pill_green"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            style="@style/PercentChangeTextStyle"
+            style="@style/BaseTextStyle.Change"
             tools:text="+$0.25 (+0.42%)" />
 
     </LinearLayout>
