@@ -9,10 +9,12 @@
 
     <style name="BaseTextStyle">
         <item name="android:textColor">@color/secondary_light_text</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="BaseTextStyle.Error" />
+
     <style name="BaseTextStyle.Change">
-        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/light_text</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -22,18 +24,16 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="BidPriceTextStyle">
-        <item name="android:textSize">20sp</item>
-    </style>
+    <style name="BaseTextStyle.BidPrice" />
 
-    <style name="CompanyNameTextStyle">
+    <style name="BaseTextStyle.CompanyName">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="PriceDetailTextStyle">
+    <style name="BaseTextStyle.PriceDetail">
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="LastUpdateTextStyle" parent="PriceDetailTextStyle" />
+    <style name="BaseTextStyle.LastUpdate" parent="BaseTextStyle.PriceDetail" />
 
 </resources>

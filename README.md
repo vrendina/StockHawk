@@ -21,7 +21,7 @@ The purpose of this project is to incorporate changes from mock user feedback in
 
 > "I use a lot of widgets on my Android device, and I would love to have a widget that displays my stock quotes on my home screen."
 
-+ TODO
++ Created a list widget to display up-to-date stock quote information.
 
 > "I found a bug in your app. Right now when I search for a stock quote that doesn't exist, the app crashes."
 
@@ -37,4 +37,6 @@ The purpose of this project is to incorporate changes from mock user feedback in
 
 ### Screenshots
 
-![List](screenshots/list.png?raw=true) ![Add](screenshots/add.png?raw=true) ![Chart](screenshots/chart.png?raw=true)
+![List](screenshots/list.png?raw=true) ![Add](screenshots/add.png?raw=true)
+
+![Chart](screenshots/chart.png?raw=true) ![Widget](screenshots/widget.png?raw=true)

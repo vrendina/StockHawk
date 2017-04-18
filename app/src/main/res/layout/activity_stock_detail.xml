@@ -6,12 +6,12 @@
     android:orientation="vertical"
     android:paddingTop="16dp"
     android:gravity="center_horizontal"
-    tools:context="com.udacity.stockhawk.ui.StockDetail">
+    tools:context="com.udacity.stockhawk.ui.StockDetailActivity">
 
 
     <TextView
         android:id="@+id/tv_companyname"
-        style="@style/CompanyNameTextStyle"
+        style="@style/BaseTextStyle.CompanyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/tv_price"
-            style="@style/BidPriceTextStyle"
+            style="@style/BaseTextStyle.BidPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textAppearance="@android:style/TextAppearance.Medium"
+            style="@style/BaseTextStyle.Error"
             android:visibility="gone"
             android:padding="@dimen/activity_horizontal_margin"
             android:text="@string/error_no_history"/>
@@ -71,7 +71,7 @@
             android:id="@+id/tv_close"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/PriceDetailTextStyle"
+            style="@style/BaseTextStyle.PriceDetail"
             android:background="@drawable/scrim"
             android:text="@string/stock_detail_close"
             android:gravity="center|bottom"

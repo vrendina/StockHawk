@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tv_ticker"
-        style="@style/CompanyNameTextStyle"
+        style="@style/BaseTextStyle.CompanyName"
         android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/tv_price"
-        style="@style/BidPriceTextStyle"
+        style="@style/BaseTextStyle.BidPrice"
         android:textSize="28sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -37,7 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class StockDetail extends AppCompatActivity
+public class StockDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor>, OnChartValueSelectedListener {
 
     private static final int STOCK_DETAIL_LOADER = 1;

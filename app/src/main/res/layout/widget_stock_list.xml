@@ -8,7 +8,7 @@
     <FrameLayout
         android:id="@+id/fl_widget_list_header"
         android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
+        android:layout_height="30dp"
         android:background="@color/primary">
 
         <TextView
@@ -36,9 +36,10 @@
             android:divider="@null"
             android:dividerHeight="0dp"
             tools:listitem="@layout/widget_stock_list_item" />
+
         <TextView
             android:id="@+id/tv_widget_list_empty"
-            style="@style/BaseTextStyle"
+            style="@style/BaseTextStyle.Error"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

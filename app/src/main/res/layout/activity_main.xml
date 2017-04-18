@@ -29,7 +29,7 @@
                 android:id="@+id/tv_lastupdate"
                 android:background="@drawable/scrim"
                 tools:text="Last Update: 4/10/2017 3:57 PM"
-                style="@style/LastUpdateTextStyle"
+                style="@style/BaseTextStyle.LastUpdate"
                 android:text="@string/last_updated"
                 android:gravity="center|bottom"
                 android:layout_gravity="bottom"/>
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textAppearance="@android:style/TextAppearance.Medium"
+        style="@style/BaseTextStyle.Error"
         android:visibility="gone"
         android:padding="@dimen/activity_horizontal_margin"
         tools:text="Error message" />

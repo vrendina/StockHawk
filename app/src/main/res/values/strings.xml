@@ -35,7 +35,7 @@
     <string name="toast_invalid_ticker">Unknown stock symbol \'%1$s\'</string>
 
     <string name="widget_stock_name">Stock Detail</string>
-    <string name="widget_stock_list_name">Stock List</string>
+    <string name="widget_stock_list_name">StockHawk List</string>
     <string name="widget_stock_list_empty">No stocks added!</string>
 
     <!-- Close [price] [date] -->

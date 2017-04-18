@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.StockDetail"
+        <activity android:name=".ui.StockDetailActivity"
             android:parentActivityName=".ui.MainActivity"/>
 
         <service
@@ -35,6 +35,10 @@
         <service
             android:name=".widget.StockWidgetIntentService"
             android:exported="false"/>
+
+        <service
+            android:name=".widget.StockListWidgetIntentService"
+            android:exported="false" />
 
         <service
             android:name=".widget.StockListRemoteViewsService"
@@ -54,6 +58,7 @@
 
         <receiver
             android:name=".widget.StockWidgetProvider"
+            android:enabled="false"
             android:label="@string/widget_stock_name" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
