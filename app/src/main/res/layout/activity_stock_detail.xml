@@ -55,15 +55,27 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/a11y_chart"/>
 
-            <TextView
-                android:id="@+id/tv_close"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/PriceDetailTextStyle"
-                android:background="@drawable/scrim"
-                android:text="@string/stock_detail_close"
-                android:gravity="center|bottom"
-                tools:text="Close $45.36 10/01/2016"/>
+
+        <TextView
+            android:id="@+id/tv_error_no_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:visibility="gone"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/error_no_history"/>
+
+        <TextView
+            android:id="@+id/tv_close"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/PriceDetailTextStyle"
+            android:background="@drawable/scrim"
+            android:text="@string/stock_detail_close"
+            android:gravity="center|bottom"
+            tools:text="Close $45.36 10/01/2016"/>
 
     </FrameLayout>
 

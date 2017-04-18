@@ -11,6 +11,7 @@ import android.support.v4.content.Loader;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -60,6 +61,9 @@ public class StockDetail extends AppCompatActivity
     @BindView(R.id.tv_close)
     TextView closeTextView;
 
+    @BindView(R.id.tv_error_no_history)
+    TextView errorTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +87,12 @@ public class StockDetail extends AppCompatActivity
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if(data.getCount() > 0) {
+            hideError();
+
             data.moveToFirst();
 
             setupHeader(data);
-            setupChart(data);
-
+            setupChart(parseData(data));
         } else {
             Timber.e("Unexpected error, symbol not found even though passed in intent...");
         }
@@ -117,7 +122,38 @@ public class StockDetail extends AppCompatActivity
         changeTextView.setText(change + " (" + percentage + ")");
     }
 
-    private void setupChart(Cursor data) {
+    private List<Entry> parseData(Cursor data) {
+        List<Entry> entries = new ArrayList<>();
+        history = new ArrayMap<>();
+
+        String[] historyArray = data.getString(Contract.Quote.POSITION_HISTORY).split("\\n");
+
+        int i = 0;
+        for(String line : historyArray) {
+            if(line.equals("")) {
+                continue;
+            }
+
+            String[] point = line.split(",");
+
+            String date = DateFormat.getDateFormat(this).format(new Date(Long.parseLong(point[0])));
+            Float price = Float.parseFloat(point[1]);
+
+            history.put(price, date);
+
+            entries.add(new Entry(i, price));
+            i++;
+        }
+
+        return entries;
+    }
+
+    private void setupChart(List<Entry> entries) {
+        if(entries.size() == 0) {
+            showError();
+            return;
+        }
+
         // Y-Axis setup
         YAxis left = chart.getAxisLeft();
 
@@ -149,25 +185,6 @@ public class StockDetail extends AppCompatActivity
         chart.setScaleEnabled(false);
         chart.setOnChartValueSelectedListener(this);
 
-        // Setup the data
-        List<Entry> entries = new ArrayList<>();
-        history = new ArrayMap<>();
-
-        String[] historyArray = data.getString(Contract.Quote.POSITION_HISTORY).split("\\n");
-
-        int i = 0;
-        for(String line : historyArray) {
-            String[] point = line.split(",");
-
-            String date = DateFormat.getDateFormat(this).format(new Date(Long.parseLong(point[0])));
-            Float price = Float.parseFloat(point[1]);
-
-            history.put(price, date);
-
-            entries.add(new Entry(i, price));
-            i++;
-        }
-
         LineDataSet dataSet = new LineDataSet(entries, "");
         dataSet.setHighLightColor(Color.GRAY);
         dataSet.setColor(ContextCompat.getColor(this, R.color.primary_dark));
@@ -180,8 +197,20 @@ public class StockDetail extends AppCompatActivity
 
         chart.setData(lineData);
 
-        chart.highlightValue(historyArray.length/2, 0, true);
+        chart.highlightValue(entries.size()/2, 0, true);
         chart.invalidate();
+    }
+
+    private void showError() {
+        errorTextView.setVisibility(View.VISIBLE);
+        chart.setVisibility(View.GONE);
+        closeTextView.setVisibility(View.GONE);
+    }
+
+    private void hideError() {
+        errorTextView.setVisibility(View.GONE);
+        chart.setVisibility(View.VISIBLE);
+        closeTextView.setVisibility(View.VISIBLE);
     }
 
     @Override

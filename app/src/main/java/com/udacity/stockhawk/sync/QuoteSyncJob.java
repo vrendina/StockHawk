@@ -101,7 +101,9 @@ public final class QuoteSyncJob {
 
                 // WARNING! Don't request historical data for a stock that doesn't exist!
                 // The request will hang forever X_x
+                Timber.d("Requesting historical data for " + symbol);
                 List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
+                Timber.d("Got history " + history.toString());
 
                 StringBuilder historyBuilder = new StringBuilder();
 
