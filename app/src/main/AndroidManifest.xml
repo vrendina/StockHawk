@@ -33,10 +33,6 @@
             android:exported="false" />
 
         <service
-            android:name=".widget.StockWidgetIntentService"
-            android:exported="false"/>
-
-        <service
             android:name=".widget.StockListWidgetIntentService"
             android:exported="false" />
 
@@ -55,18 +51,6 @@
             android:name=".data.StockProvider"
             android:authorities="com.udacity.stockhawk"
             android:exported="false" />
-
-        <receiver
-            android:name=".widget.StockWidgetProvider"
-            android:enabled="false"
-            android:label="@string/widget_stock_name" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.udacity.stockhawk.ACTION_DATA_UPDATED" />
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/widget_stock" />
-        </receiver>
 
         <receiver
             android:name=".widget.StockListWidgetProvider"
