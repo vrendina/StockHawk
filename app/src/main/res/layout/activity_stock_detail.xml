@@ -40,6 +40,8 @@
             android:background="@drawable/percent_change_pill_green"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
+            android:paddingEnd="3dp"
+            android:paddingStart="3dp"
             style="@style/BaseTextStyle.Change"
             tools:text="+$0.25 (+0.42%)" />
 
