@@ -13,8 +13,8 @@ public class StockHawkApp extends Application {
         super.onCreate();
 
         // Workaround for redirect issue (#69) in yahoo finance library
-        System.setProperty("yahoofinance.baseurl.histquotes", "https://ichart.yahoo.com/table.csv");
-        System.setProperty("yahoofinance.baseurl.quotes", "http://download.finance.yahoo.com/d/quotes.csv");
+//        System.setProperty("yahoofinance.baseurl.histquotes", "https://ichart.yahoo.com/table.csv");
+//        System.setProperty("yahoofinance.baseurl.quotes", "http://download.finance.yahoo.com/d/quotes.csv");
 
         if (BuildConfig.DEBUG) {
             Timber.uprootAll();
